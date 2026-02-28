@@ -1,0 +1,143 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Login Dashboard</title>
+
+<style>
+:root{
+--bg:#f3f4f6;
+--panel:#ffffff;
+--line:#e5e7eb;
+--text:#111827;
+--muted:#6b7280;
+--primary:#2563eb;
+--primary2:#1d4ed8;
+--danger:#dc2626;
+--shadow:0 10px 25px rgba(17,24,39,.08);
+--r:14px;
+}
+*{box-sizing:border-box}
+body{
+margin:0;
+font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
+background:var(--bg);
+display:grid;
+place-items:center;
+height:100vh;
+padding:20px;
+color:var(--text);
+}
+.container{
+width:100%;
+max-width:420px;
+background:var(--panel);
+border:1px solid var(--line);
+border-radius:var(--r);
+box-shadow:var(--shadow);
+padding:30px;
+}
+h1{
+margin:0 0 20px 0;
+font-size:24px;
+text-align:center;
+}
+input{
+width:100%;
+padding:12px;
+border-radius:10px;
+border:1px solid var(--line);
+margin-bottom:15px;
+font-size:14px;
+}
+input:focus{
+outline:none;
+border-color:var(--primary);
+box-shadow:0 0 0 3px rgba(37,99,235,.15);
+}
+button{
+width:100%;
+padding:12px;
+border-radius:10px;
+border:none;
+background:var(--primary);
+color:#fff;
+font-size:14px;
+cursor:pointer;
+transition:.2s;
+}
+button:hover{background:var(--primary2);}
+.error{
+display:none;
+color:var(--danger);
+font-size:13px;
+margin-bottom:10px;
+text-align:center;
+}
+.dashboard{
+display:none;
+text-align:center;
+}
+.logout{
+margin-top:20px;
+background:#fff;
+color:var(--danger);
+border:1px solid #fecaca;
+}
+.logout:hover{background:#fee2e2;}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<!-- LOGIN -->
+<div id="loginBox">
+<h1>Sign in</h1>
+
+<div class="error" id="error">Invalid login</div>
+
+<input type="email" id="email" placeholder="Email: admin@demo.com">
+<input type="password" id="password" placeholder="Password: 123456">
+
+<button onclick="login()">Login</button>
+</div>
+
+<!-- DASHBOARD -->
+<div class="dashboard" id="dashboardBox">
+<h1>Dashboard</h1>
+<p id="welcome"></p>
+<button class="logout" onclick="logout()">Logout</button>
+</div>
+
+</div>
+
+<script>
+const EMAIL="admin@demo.com";
+const PASS="123456";
+
+function login(){
+const email=document.getElementById("email").value.trim();
+const pass=document.getElementById("password").value.trim();
+const error=document.getElementById("error");
+
+if(email===EMAIL && pass===PASS){
+document.getElementById("loginBox").style.display="none";
+document.getElementById("dashboardBox").style.display="block";
+document.getElementById("welcome").innerText="Welcome, "+email;
+error.style.display="none";
+}else{
+error.style.display="block";
+}
+}
+
+function logout(){
+document.getElementById("dashboardBox").style.display="none";
+document.getElementById("loginBox").style.display="block";
+}
+</script>
+
+</body>
+</html>
